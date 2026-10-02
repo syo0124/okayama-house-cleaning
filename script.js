@@ -13,7 +13,10 @@
   const formReady = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(config.formEmail || '');
   document.querySelectorAll('[data-form]').forEach(a => { a.href = '#estimate-form'; });
   if (formReady) {
-    form.action = `https://formsubmit.co/${encodeURIComponent(config.formEmail)}`;
+    form.action = `https://formsubmit.co/${config.formEmail}`;
+    const source = document.createElement('input');
+    source.type = 'hidden'; source.name = '_url'; source.value = 'https://syo0124.github.io/okayama-house-cleaning/';
+    form.appendChild(source);
     form.querySelector('button').disabled = false;
     document.getElementById('form-status').textContent = '送信後、迷惑メール対策の確認画面に進みます。';
   }
